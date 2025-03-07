@@ -8,7 +8,7 @@
 import UIKit
 
 class RegistrationVC: UIViewController {
-
+    
     @IBOutlet weak var viewUserName: UIView!
     @IBOutlet weak var viewEmail: UIView!
     @IBOutlet weak var viewBtnRegister: UIView!
@@ -17,12 +17,11 @@ class RegistrationVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupUI()
-
     }
     
-
+    
     @IBAction func btnRegisterTapped(_ sender: Any) {
         checkValidation()
     }
@@ -41,12 +40,12 @@ class RegistrationVC: UIViewController {
     
     func checkValidation() {
         guard let userName = tfUserName.text?.trimmingCharacters(in: .whitespacesAndNewlines), !userName.isEmpty else {
-            showAlert(title: "Error", message: "Username cannot be empty.")
+            UtilitiesManager.shared.showAlert(title: "Error", message: "Username cannot be empty.")
             return
         }
         
         guard let email = tfEmail.text?.trimmingCharacters(in: .whitespacesAndNewlines), !email.isEmpty else {
-            showAlert(title: "Error", message: "Email cannot be empty.")
+            UtilitiesManager.shared.showAlert(title: "Error", message: "Email cannot be empty.")
             return
         }
         
@@ -66,19 +65,6 @@ class RegistrationVC: UIViewController {
         navigationController?.pushViewController(tabBarController, animated: true)
         
     }
-
     
-    
-    func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        
-        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-           let window = scene.windows.first,
-           let topVC = window.rootViewController {
-            topVC.present(alert, animated: true, completion: nil)
-        }
-    }
-
     
 }

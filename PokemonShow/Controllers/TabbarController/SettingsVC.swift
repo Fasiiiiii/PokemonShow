@@ -8,7 +8,7 @@
 import UIKit
 
 class SettingsVC: UIViewController {
-
+    
     @IBOutlet weak var viewUserName: UIView!
     @IBOutlet weak var tfUsername: UITextField!
     @IBOutlet weak var viewEmail: UIView!
@@ -38,32 +38,23 @@ class SettingsVC: UIViewController {
         tfEmail.text = UtilitiesManager.shared.userEmail
         tfUsername.text = UtilitiesManager.shared.UserName
     }
-
+    
     func checkValidation() {
         guard let userName = tfUsername.text?.trimmingCharacters(in: .whitespacesAndNewlines), !userName.isEmpty else {
-            showAlert(title: "Error", message: "Username cannot be empty.")
+            UtilitiesManager.shared.showAlert(title: "Error", message: "Username cannot be empty.")
             return
         }
         
         guard let email = tfEmail.text?.trimmingCharacters(in: .whitespacesAndNewlines), !email.isEmpty else {
-            showAlert(title: "Error", message: "Email cannot be empty.")
+            UtilitiesManager.shared.showAlert(title: "Error", message: "Email cannot be empty.")
             return
         }
         
         UtilitiesManager.shared.UserName = userName
         UtilitiesManager.shared.userEmail = email
         
-        showAlert(title: "Success!", message: "Details updated successfully")
+        UtilitiesManager.shared.showAlert(title: "Success!", message: "Details updated successfully")
     }
     
-    func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        
-        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-           let window = scene.windows.first,
-           let topVC = window.rootViewController {
-            topVC.present(alert, animated: true, completion: nil)
-        }
-    }
+    
 }
