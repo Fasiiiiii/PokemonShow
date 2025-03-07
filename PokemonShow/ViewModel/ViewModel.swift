@@ -31,4 +31,9 @@ class PokemonViewModel {
             }
         }.resume()
     }
+    
+    func imageURL(for index: Int) -> URL? {
+            let id = pokemons[index].id
+            return URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(id).png")
+        }
 }

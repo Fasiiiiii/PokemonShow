@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class listTableViewCell: UITableViewCell {
 
@@ -14,11 +15,12 @@ class listTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        imgViewList.contentMode = .scaleAspectFit
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
+    func configure(with pokemon: Pokemon, imageUrl: URL?) {
+        lblList.text = pokemon.name.capitalized
+        imgViewList.kf.setImage(with: imageUrl, placeholder: UIImage(systemName: "square.and.arrow.up.trianglebadge.exclamationmark.fill"))
     }
     
 }

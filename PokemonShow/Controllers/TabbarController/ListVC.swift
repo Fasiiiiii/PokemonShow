@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -21,6 +22,12 @@ class ListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         registerCellAndTableView()
         bindViewModel()
         viewModel.fetchPokemon(limit: 20, offset: 0)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        lblName.text = UtilitiesManager.shared.UserName
     }
     
     
@@ -51,7 +58,10 @@ class ListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "listTableViewCell") as! listTableViewCell
-        cell.lblList.text = viewModel.pokemons[indexPath.row].name.capitalized
+        let pokemon = viewModel.pokemons[indexPath.row]
+        let imageUrl = viewModel.imageURL(for: indexPath.row)
+        
+        cell.configure(with: pokemon, imageUrl: imageUrl)
         return cell
     }
     
