@@ -9,13 +9,11 @@ import UIKit
 
 class SettingsVC: UIViewController {
 
-
     @IBOutlet weak var viewUserName: UIView!
     @IBOutlet weak var tfUsername: UITextField!
     @IBOutlet weak var viewEmail: UIView!
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var viewBtnUpdate: UIView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +23,6 @@ class SettingsVC: UIViewController {
     @IBAction func btnUpdateTapped(_ sender: UIButton) {
         checkValidation()
     }
-    
     
     func setupUI() {
         viewUserName.layer.cornerRadius = 10
