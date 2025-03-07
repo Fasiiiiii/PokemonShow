@@ -7,3 +7,10 @@
 
 import Foundation
 
+struct Pokemon: Decodable {
+    let name: String
+}
+
+struct PokemonResponse: Decodable {
+    let results: [Pokemon]
+}

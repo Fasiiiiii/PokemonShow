@@ -52,6 +52,19 @@ class RegistrationVC: UIViewController {
         
         UtilitiesManager.shared.UserName = userName
         UtilitiesManager.shared.userEmail = email
+        
+        navigateToNextController()
+    }
+    
+    func navigateToNextController() {
+        guard let tabBarController = storyboard?.instantiateViewController(withIdentifier: "TabbarController") as? UITabBarController else {
+            print("Could not instantiate TabBarController")
+            return
+        }
+        
+        tabBarController.selectedIndex = 0
+        navigationController?.pushViewController(tabBarController, animated: true)
+        
     }
 
     
